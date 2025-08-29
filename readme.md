@@ -159,4 +159,4 @@ NUXT_PUBLIC_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
 PRs and issues are welcome! Please open an issue if you run into a bug or need a feature.
 
 ## 📄 License
-MIT
+[MIT](LICENSE)
