@@ -1,5 +1,6 @@
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
 
+
 export default defineNuxtPlugin(() => {
     const cfg = useRuntimeConfig()
     const clientId = (cfg.public as any)?.googleAuth?.clientId as string | undefined

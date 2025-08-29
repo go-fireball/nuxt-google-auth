@@ -1,7 +1,7 @@
 // src/runtime/server/api/auth/google.verify.post.ts
 import { defineEventHandler, readBody } from 'h3'
 import * as jose from 'jose'
-
+import { useRuntimeConfig } from '#imports'
 
 export default defineEventHandler(async (event) => {
     const { credential } = await readBody<{ credential?: string }>(event)

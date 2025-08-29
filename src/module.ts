@@ -9,6 +9,7 @@ import {
     addComponent,
     addImportsDir
 } from '@nuxt/kit'
+import {MODULE_KEY, MODULE_NAME} from "./runtime/constants";
 
 export interface ModuleOptions {
     clientId?: string
@@ -20,8 +21,8 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
     meta: {
-        name: 'nuxt-google-auth',
-        configKey: 'googleAuth',
+        name: MODULE_NAME,
+        configKey: MODULE_KEY,
         compatibility: {nuxt: '^3.0.0 || ^4.0.0'}
     },
     defaults: {
