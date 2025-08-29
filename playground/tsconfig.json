@@ -1,5 +1,12 @@
 // playground/tsconfig.json
 {
-  "extends": ".nuxt/tsconfig",
-  "include": ["**/*", ".nuxt", "nuxt.config.ts"]
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "types": ["nuxt",
+    "../src/types.nuxt-google-auth.d.ts"],
+    "skipLibCheck": true,
+
+  },
+  "include": ["**/*", ".nuxt", "nuxt.config.ts", "nuxt-google-auth.d.ts"],
 }

@@ -1,6 +1,5 @@
 // src/runtime/composables/useGoogleAuth.ts
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import {useFetch} from "nuxt/app";
+import {ref, onMounted, onBeforeUnmount} from 'vue'
 
 /**
  * Composable for working with Google Identity Services.
@@ -32,19 +31,24 @@ export function useGoogleAuth() {
 
         // Clear existing content so we don’t stack multiple buttons
         el.innerHTML = ''
-        google.accounts.id.renderButton(el, { theme: 'outline', size: 'large', ...opts })
+        google.accounts.id.renderButton(el,
+            {
+                theme: 'outline', size: 'large',
+                type: 'standard',
+                ...opts
+            })
     }
 
     async function verifyOnServer() {
-        if (!credential.value) return { ok: false }
+        if (!credential.value) return {ok: false}
         try {
             const data = await $fetch('/api/auth/google/verify', {
                 method: 'POST',
-                body: { credential: credential.value }
+                body: {credential: credential.value}
             })
-            return { data, error: null }
+            return {data, error: null}
         } catch (err) {
-            return { data: null, error: err }
+            return {data: null, error: err}
         }
     }
 
@@ -59,5 +63,5 @@ export function useGoogleAuth() {
         onMounted(() => window.addEventListener('nuxt-google-auth:credential', onCred as any))
         onBeforeUnmount(() => window.removeEventListener('nuxt-google-auth:credential', onCred as any))
     }
-    return { credential, payload, renderButton, verifyOnServer }
+    return {credential, payload, renderButton, verifyOnServer}
 }

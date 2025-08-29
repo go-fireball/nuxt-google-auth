@@ -4,6 +4,7 @@ export default defineNuxtPlugin(() => {
     const cfg = useRuntimeConfig()
     const clientId = (cfg.public as any)?.googleAuth?.clientId as string | undefined
     const promptOneTap = !!(cfg.public as any)?.googleAuth?.promptOneTap
+    const useFedCMForPrompt = (cfg.public as any)?.googleAuth?.useFedCMForPrompt as boolean | undefined
 
     if (!clientId) {
         console.warn('[nuxt-google-auth] Missing runtimeConfig.public.googleAuth.clientId')
@@ -41,6 +42,7 @@ export default defineNuxtPlugin(() => {
 
         google.accounts.id.initialize({
             client_id: clientId,
+            use_fedcm_for_prompt: useFedCMForPrompt || true,
             callback: (resp: any) => {
                 window.dispatchEvent(new CustomEvent('nuxt-google-auth:credential', { detail: resp }))
             }

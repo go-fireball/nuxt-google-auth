@@ -1,23 +1,28 @@
-<!-- /playground/pages/index.vue-->
-<script setup lang="ts">
-import { watch } from 'vue'
-
-const { payload, verifyOnServer } = useGoogleAuth()
-
-
-watch(payload, async (p) => {
-  if (!p) return
-  console.log('Google payload', p)
-  const { data } = await verifyOnServer()
-  console.log('Server verify', data)
-})
-</script>
-
-
+<!-- playground/pages/index.vue -->
 <template>
   <div style="display:grid;place-items:center;height:80vh;gap:16px;">
-    <button>sdfads</button>
-    <client-only><GoogleLoginButton>Login </GoogleLoginButton> </client-only>
-    <p>Open console to see payload + server verify.</p>
+    <GoogleLoginButton
+        :verify-on-server="true"
+        :options="{ theme: 'filled_blue', size: 'large' }"
+        @success="onSuccess"
+        @verified="onVerified"
+        @error="onError"
+    />
+    <p>Open console to see events.</p>
   </div>
 </template>
+
+<script setup lang="ts">
+// eslint-disable-next-line no-console
+const onSuccess = (e: { credential: string; claims: any }) => {
+  console.log('success:', e.claims, e.credential.slice(0, 20) + '…')
+}
+// eslint-disable-next-line no-console
+const onVerified = (data: any) => {
+  console.log('verified:', data)
+}
+// eslint-disable-next-line no-console
+const onError = (err: any) => {
+  console.error('error:', err)
+}
+</script>

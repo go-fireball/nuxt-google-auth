@@ -1,7 +1,19 @@
 {
+
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",   // or "es2020", "es2022", "nodenext", etc.
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "types": ["@nuxt/schema", "node"],
+    "paths": {
+      "#imports": [
+        ".nuxt/types/nitro-imports.d.ts"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "runtime",
+    "nuxt.d.ts",
+  ]
 }

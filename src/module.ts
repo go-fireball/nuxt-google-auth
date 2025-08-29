@@ -1,3 +1,5 @@
+// src/module.ts
+
 import {
     defineNuxtModule,
     addPlugin,
@@ -8,13 +10,12 @@ import {
     addImportsDir
 } from '@nuxt/kit'
 
-
-// src/module.ts
 export interface ModuleOptions {
     clientId?: string
     autoLoadScript?: boolean
     promptOneTap?: boolean
     enableServerVerify?: boolean   // ← new
+    useFedCMForPrompt?: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -28,6 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
         autoLoadScript: true,
         promptOneTap: false,
         enableServerVerify: false,
+        useFedCMForPrompt: true
     },
     setup(options, nuxt) {
         const {resolve} = createResolver(import.meta.url)

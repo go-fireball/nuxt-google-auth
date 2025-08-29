@@ -4,6 +4,7 @@
   "description": "Google Identity Services integration for Nuxt 3 & 4 with a simple composable and button component.",
   "license": "MIT",
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.0.3",
     "nuxt": "^4.0.3"
   },
   "peerDependencies": {
@@ -36,5 +38,14 @@
   },
   "dependencies": {
     "jose": "^6.1.0"
+  },
+  "author": "Venkat Sundaram",
+  "repository": { "type": "git", "url": "https://github.com/go-fireball/nuxt-google-auth" },
+  "homepage": "https://github.com/go-fireball/nuxt-google-auth#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
