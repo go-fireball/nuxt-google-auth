@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",   // or "es2020", "es2022", "nodenext", etc.
+    "moduleResolution": "node"
+  }
+}

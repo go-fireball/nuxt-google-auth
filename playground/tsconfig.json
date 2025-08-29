@@ -1,0 +1,5 @@
+// playground/tsconfig.json
+{
+  "extends": ".nuxt/tsconfig",
+  "include": ["**/*", ".nuxt", "nuxt.config.ts"]
+}

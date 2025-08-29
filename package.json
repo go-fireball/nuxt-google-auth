@@ -1,0 +1,40 @@
+{
+  "name": "nuxt-google-auth",
+  "version": "0.1.0",
+  "description": "Google Identity Services integration for Nuxt 3 & 4 with a simple composable and button component.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "nuxt3",
+    "nuxt4",
+    "google",
+    "auth",
+    "google-identity-services"
+  ],
+  "scripts": {
+    "dev": "nuxt dev playground",
+    "build": "nuxt build-module",
+    "prepack": "nuxt build-module"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^1.0.2",
+    "nuxt": "^4.0.3"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.0.0 || ^4.0.0"
+  },
+  "dependencies": {
+    "jose": "^6.1.0"
+  }
+}

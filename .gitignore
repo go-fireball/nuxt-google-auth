@@ -1,0 +1,22 @@
+# dependencies
+node_modules
+package-lock.json yarn.lock pnpm-lock.yaml # (optional if you don’t want to lock lib builds)
+
+# build output
+dist
+.nuxt
+.output
+
+# playground build output
+playground/.nuxt
+playground/.output
+
+# env files
+*.env
+!playground/.env.example
+
+# misc
+.DS_Store
+
+# ide
+.idea/
