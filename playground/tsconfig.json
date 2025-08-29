@@ -3,10 +3,16 @@
   "compilerOptions": {
     "moduleResolution": "bundler",
     "jsx": "preserve",
-    "types": ["nuxt",
-    "../src/types.nuxt-google-auth.d.ts"],
-    "skipLibCheck": true,
-
+    "types": [
+      "nuxt",
+      "../src/types.d.ts"
+    ],
+    "skipLibCheck": true
   },
-  "include": ["**/*", ".nuxt", "nuxt.config.ts", "nuxt-google-auth.d.ts"],
+  "include": [
+    "**/*",
+    ".nuxt",
+    "nuxt.config.ts",
+    "nuxt-google-auth.d.ts"
+  ]
 }
