@@ -55,13 +55,15 @@ export default defineNuxtConfig({
 ```vue
 <template>
   <div style="display:grid;place-items:center;height:80vh;gap:16px;">
-    <GoogleLoginButton
-        :verify-on-server="true"
-        :options="{ theme: 'filled_blue', size: 'large' }"
-        @success="onSuccess"
-        @verified="onVerified"
-        @error="onError"
-    />
+    <ClientOnly>
+      <GoogleLoginButton
+          :verify-on-server="true"
+          :options="{ theme: 'filled_blue', size: 'large' }"
+          @success="onSuccess"
+          @verified="onVerified"
+          @error="onError"
+      />
+    </ClientOnly>
     <p>Open console to see events.</p>
   </div>
 </template>
@@ -89,6 +91,8 @@ export default defineNuxtConfig({
 
 - Omit `verify-on-server` if you want to handle verification yourself.
 
+- The Google button renders via Google Identity Services, so it must be client-only. Wrap it in `<ClientOnly>` (as shown above) if it can render on the server.
+
 #### Props
 
 - options?: Record<string, any> — passed to Google renderButton (theme, size, text, shape, width, etc.)
@@ -102,6 +106,30 @@ export default defineNuxtConfig({
 - verified — server response (when verifyOnServer is true)
 
 - error — any thrown error
+
+#### Button options examples
+
+```vue
+<ClientOnly>
+  <GoogleLoginButton
+    :options="{ theme: 'outline', size: 'large', text: 'continue_with' }"
+    @success="onSuccess"
+    @error="onError"
+  />
+
+  <GoogleLoginButton
+    :options="{ theme: 'filled_black', size: 'medium', text: 'signup_with' }"
+    @success="onSuccess"
+    @error="onError"
+  />
+
+  <GoogleLoginButton
+    :options="{ theme: 'filled_blue', size: 'small', shape: 'pill', text: 'signin_with' }"
+    @success="onSuccess"
+    @error="onError"
+  />
+</ClientOnly>
+```
 
 ### Composable (optional, advanced)
 

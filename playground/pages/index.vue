@@ -1,13 +1,32 @@
 <!-- playground/pages/index.vue -->
 <template>
-  <div style="display:grid;place-items:center;height:80vh;gap:16px;">
+  <div style="display:grid;place-items:center;min-height:80vh;gap:16px;">
     <GoogleLoginButton
-        :verify-on-server="true"
-        :options="{ theme: 'filled_blue', size: 'large' }"
-        @success="onSuccess"
-        @verified="onVerified"
-        @error="onError"
+      :verify-on-server="true"
+      :options="{ theme: 'filled_blue', size: 'large' }"
+      @success="onSuccess"
+      @verified="onVerified"
+      @error="onError"
     />
+
+    <GoogleLoginButton
+      :options="{ theme: 'outline', size: 'large', text: 'continue_with' }"
+      @success="onSuccess"
+      @error="onError"
+    />
+
+    <GoogleLoginButton
+      :options="{ theme: 'filled_black', size: 'medium', text: 'signup_with' }"
+      @success="onSuccess"
+      @error="onError"
+    />
+
+    <GoogleLoginButton
+      :options="{ theme: 'filled_blue', size: 'small', shape: 'pill', text: 'signin_with' }"
+      @success="onSuccess"
+      @error="onError"
+    />
+
     <p>Open console to see events.</p>
   </div>
 </template>
