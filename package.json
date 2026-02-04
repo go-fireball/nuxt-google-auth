@@ -1,6 +1,6 @@
 {
   "name": "nuxt-google-auth",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Google Identity Services integration for Nuxt 3 & 4 with a simple composable and button component.",
   "license": "MIT",
   "type": "module",
