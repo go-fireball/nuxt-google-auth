@@ -42,6 +42,8 @@ const emit = defineEmits<{
 const el = ref<HTMLElement | null>(null)
 const ro = ref<ResizeObserver | null>(null)
 let t: ReturnType<typeof setTimeout> | null = null
+let lastWidth = 0
+let lastOptsKey = ''
 
 const { renderButton, payload, credential, verifyOnServer: verify } = useGoogleAuth()
 
@@ -67,6 +69,13 @@ function renderNow() {
     ...(props.options || {}),
     width: typeof userWidth === 'number' ? userWidth : autoWidth
   }
+
+  const optsKey = stableKey(opts)
+  const widthChanged = opts.width !== lastWidth
+  const optsChanged = optsKey !== lastOptsKey
+  if (!widthChanged && !optsChanged) return
+  lastWidth = opts.width
+  lastOptsKey = optsKey
 
   // renderButton() owns clearing & rendering (avoids duplicate clears here)
   renderButton(el.value, opts)
@@ -110,6 +119,24 @@ watch(
     { deep: true }
 )
 
+function stableKey(obj: Record<string, any>) {
+  const keys = Object.keys(obj).sort()
+  let out = ''
+  for (const k of keys) {
+    const v = obj[k]
+    out += `${k}:${stringifyVal(v)}|`
+  }
+  return out
+}
+
+function stringifyVal(v: any) {
+  if (v == null) return 'null'
+  if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') return String(v)
+  if (Array.isArray(v)) return `[${v.map(stringifyVal).join(',')}]`
+  if (typeof v === 'object') return `{${stableKey(v)}}`
+  return String(v)
+}
+
 // When composable receives a new credential, emit success (and optionally verify).
 watch(payload, async (claims) => {
   try {
@@ -134,9 +161,11 @@ watch(payload, async (claims) => {
       ref="el"
       :style="{
       width: '100%',
+      maxWidth: '100%',
       display: 'flex',
       justifyContent: 'center',
-      minHeight: '44px'
+      minHeight: '44px',
+      overflow: 'hidden'
     }"
   />
 </template>
