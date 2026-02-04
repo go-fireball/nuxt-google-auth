@@ -93,11 +93,19 @@ export default defineNuxtConfig({
 
 - The Google button renders via Google Identity Services, so it must be client-only. Wrap it in `<ClientOnly>` (as shown above) if it can render on the server.
 
+- Google Identity Services clamps button width (commonly ~200–400px). If you don’t pass `options.width`, the component uses the container width and then clamps between `minWidth` and `maxWidth`.
+
 #### Props
 
 - options?: Record<string, any> — passed to Google renderButton (theme, size, text, shape, width, etc.)
 
 - verifyOnServer?: boolean — default false.
+
+- minWidth?: number — default 200.
+
+- maxWidth?: number — default 400.
+
+- debounceMs?: number — default 100.
 
 #### Events
 
