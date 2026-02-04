@@ -12,7 +12,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "readme.md",
+    "LICENSE"
   ],
   "keywords": [
     "nuxt",
