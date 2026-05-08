@@ -1,7 +1,7 @@
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
 
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin( async () => {
     const cfg = useRuntimeConfig()
     const clientId = (cfg.public as any)?.googleAuth?.clientId as string | undefined
     const promptOneTap = !!(cfg.public as any)?.googleAuth?.promptOneTap
@@ -58,18 +58,13 @@ export default defineNuxtPlugin(() => {
         return true
     }
 
-    ;(async () => {
-        try {
-            await injectScript()
-            // wait a microtask so the global is attached
-            Promise.resolve().then(() => {
-                if (!initGIS()) {
-                    // very defensive: if google isn’t attached yet, retry next frame
-                    requestAnimationFrame(() => initGIS())
-                }
-            })
-        } catch (e: any) {
-            console.warn('[nuxt-google-auth] GIS not ready:', e?.message || e)
-        }
-    })()
+  try {
+    await injectScript();
+    if (!initGIS()) {
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      initGIS();
+    }
+  } catch (e) {
+    console.warn("[nuxt-google-auth] GIS not ready:", e?.message || e);
+  }
 })
